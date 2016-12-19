@@ -1,0 +1,25 @@
+﻿<Window x:Class="Image_Viewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Image_Viewer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525" AllowsTransparency="True" WindowStyle="None">
+    <Grid Background="#FF000000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" BorderBrush="#FF7E4747"></Border>
+        <Grid Grid.Row="0" Height="20" VerticalAlignment="Top" x:Name="TopPanel">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FF333333" Offset="0"/>
+                    <GradientStop Color="#FF1F1F1F" Offset="0.5"/>
+                    <GradientStop Color="#FF050505" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+    </Grid>
+</Window>
