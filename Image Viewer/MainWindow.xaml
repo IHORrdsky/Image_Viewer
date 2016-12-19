@@ -11,8 +11,8 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" BorderBrush="#FF7E4747" Background="#FFB05757">
-            <Grid Height="300" AllowDrop="True" Width="300" Drop="Image_Drop" Background="Aqua"  >
+        <Border Grid.Row="1" BorderBrush="#FF7E4747" Background="#FFB05757" Margin="10,0,-10,0">
+            <Grid Height="300" AllowDrop="True" Width="320" Drop="Image_Drop" Background="Aqua"  >
                 <Image x:Name="image" AllowDrop="True" Drop="Image_Drop"/>
             </Grid>
            
