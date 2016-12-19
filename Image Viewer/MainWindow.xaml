@@ -11,7 +11,7 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="1" BorderBrush="#FF7E4747"></Border>
+        <Border Grid.Row="1" BorderBrush="#FF7E4747" Background="#FFB05757"></Border>
         <Grid Grid.Row="0" Height="20" VerticalAlignment="Top" x:Name="TopPanel">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
