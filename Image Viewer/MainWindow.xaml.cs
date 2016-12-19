@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace Image_Viewer
 {
@@ -23,6 +24,25 @@ namespace Image_Viewer
         public MainWindow()
         {
             InitializeComponent();
+        }
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+            this.DragMove();
+        }
+
+        private void Image_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                // Note that you can have more than one file.
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                string FileName = files[0];
+                //MessageBox.Show(files[0]);
+                // Assuming you have one file that you care about, pass it off to whatever
+                // handling code you have defined
+                image.Source = new BitmapImage(new Uri(FileName));
+            }
         }
     }
 }
