@@ -41,7 +41,9 @@ namespace Image_Viewer
                 MessageBox.Show(files[0]);
                 // Assuming you have one file that you care about, pass it off to whatever
                 // handling code you have defined
-                //image.Source = new BitmapImage(new Uri(FileName));
+                net.Source = new BitmapImage(new Uri(FileName));
+                firstBlock.Text = String.Empty;
+                secondBlock.Text = String.Empty;
             }
         }
 
