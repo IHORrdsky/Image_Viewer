@@ -61,15 +61,5 @@ namespace Image_Viewer
         {
             this.WindowState = WindowState.Minimized;
         }
-
-        private void Maximize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Maximized;
-        }
-
-        private void Minimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
     }
 }

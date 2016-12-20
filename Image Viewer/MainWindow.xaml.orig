@@ -36,13 +36,30 @@
                     <GradientStop Color="#FF050505" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
+<<<<<<< HEAD
+            <WrapPanel>
+                <Button Style="{StaticResource SmallBtn}" x:Name="Close" Click="Close_Click" >
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_close.png" />
+                </Button>
+
+                <Button Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Margin="0" >
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_minimize.png" />
+                </Button>
+
+                <Button Style="{StaticResource SmallBtn}" x:Name="Maximize" Click="Maximize_Click" Margin="0">
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_maximize.png" />
+                </Button>
+            </WrapPanel>
+=======
             <StackPanel Orientation="Horizontal">
                 <Button   Style="{StaticResource SmallBtn}" Template="{StaticResource Close_Button}"   x:Name="Close"  Click="Close_Click" HorizontalAlignment="Center"/>
                 <Button  Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Template="{StaticResource Minimize_Button}" HorizontalAlignment="Center" />
                 <Button  Style="{StaticResource SmallBtn}" x:Name="Maximize" Template="{StaticResource Maximize_Button}" Click="Maximize_Click" HorizontalAlignment="Center"/>
             </StackPanel>
+>>>>>>> 4cfc34a3812eca4374f1b5f3f86913c91067fc30
 
             <WrapPanel HorizontalAlignment="Right" Margin="0,0,42,0" >
+
                 <Button Style="{StaticResource SmallBtn}"   >
                     <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png" ToolTip="Pin titlebar" />
                 </Button>
@@ -73,6 +90,7 @@
 
                     <TextBlock x:Name="secondBlock"  HorizontalAlignment="Center" VerticalAlignment="Center" >
                 <Run FontFamily="Arial" FontSize="14" Foreground="#FF666666">picture or folder here</Run>
+<<<<<<< HEAD
                     </TextBlock>
                 </StackPanel>
 
@@ -128,6 +146,18 @@
             
             
         </UserControl>
+=======
+            </TextBlock>
+            </StackPanel>
+
+            </TextBlock>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="193.29,0,193.29,130.375">
+                <Run FontFamily="Arial" FontSize="14" Foreground="#FF666666">picture or folder here</Run>
+            </TextBlock>
+
+        </Grid>
+>>>>>>> 4cfc34a3812eca4374f1b5f3f86913c91067fc30
 
     </Grid>
 </Window>
