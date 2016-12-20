@@ -38,16 +38,28 @@ namespace Image_Viewer
                 // Note that you can have more than one file.
                 string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string FileName = files[0];
-                //MessageBox.Show(files[0]);
+                MessageBox.Show(files[0]);
                 // Assuming you have one file that you care about, pass it off to whatever
                 // handling code you have defined
-                image.Source = new BitmapImage(new Uri(FileName));
+                net.Source = new BitmapImage(new Uri(FileName));
+                firstBlock.Text = String.Empty;
+                secondBlock.Text = String.Empty;
             }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Maximize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Maximized;
+        }
+
+        private void Minimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
 
         private void Maximize_Click(object sender, RoutedEventArgs e)
