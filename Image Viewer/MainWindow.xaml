@@ -13,7 +13,7 @@
             <Setter Property="HorizontalAlignment" Value="Left" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
 
     </Window.Resources>
@@ -32,19 +32,11 @@
                     <GradientStop Color="#FF050505" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
-            <WrapPanel>
-                <Button Style="{StaticResource SmallBtn}"  x:Name="Close" Click="Close_Click" >
-                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_close.png" />
-                </Button>
-
-                <Button Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Margin="0" >
-                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_minimize.png" />
-                </Button>
-
-                <Button Style="{StaticResource SmallBtn}" x:Name="Maximize" Click="Maximize_Click" Margin="0">
-                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_maximize.png" />
-                </Button>
-            </WrapPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button   Style="{StaticResource SmallBtn}" Template="{StaticResource Close_Button}"   x:Name="Close"  Click="Close_Click" HorizontalAlignment="Center"/>
+                <Button  Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Template="{StaticResource Minimize_Button}" HorizontalAlignment="Center" />
+                <Button  Style="{StaticResource SmallBtn}" x:Name="Maximize" Template="{StaticResource Maximize_Button}" Click="Maximize_Click" HorizontalAlignment="Center"/>
+            </StackPanel>
 
 
         </Grid>

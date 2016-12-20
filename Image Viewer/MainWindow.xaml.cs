@@ -61,5 +61,6 @@ namespace Image_Viewer
         {
             this.WindowState = WindowState.Minimized;
         }
+
     }
 }
