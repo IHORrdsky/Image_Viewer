@@ -5,7 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Viewer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" AllowsTransparency="True" WindowStyle="None">
+      Title="MainWindow" Height="350" Width="525" AllowsTransparency="True" WindowStyle="None">
+
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Key="SmallBtn">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+        </Style>
+
+    </Window.Resources>
+
     <Grid Background="#FF000000">
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
@@ -25,6 +37,47 @@
                     <GradientStop Color="#FF050505" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
+            <WrapPanel>
+                <Button Style="{StaticResource SmallBtn}"  x:Name="Close" Click="Close_Click" >
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_close.png" />
+                </Button>
+
+                <Button Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Maximize_Click" Margin="0" >
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_minimize.png" />
+                </Button>
+
+                <Button Style="{StaticResource SmallBtn}" x:Name="Maximize" Click="Minimize_Click" Margin="0">
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/button_maximize.png" />
+                </Button>
+            </WrapPanel>
+
+
         </Grid>
+
+        <Grid x:Name="ContentPanel" Grid.Row="1" AllowDrop="True" Drop="Image_Drop">
+
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FF000000" Offset="0"/>
+                    <GradientStop Color="#FF050505" Offset="0.25"/>
+                    <GradientStop Color="#FF0E0E0E" Offset="0.5"/>
+                    <GradientStop Color="#FF181818" Offset="0.75"/>
+                    <GradientStop Color="#FF212121" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Image x:Name="image" AllowDrop="True" Drop="Image_Drop" />
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Run FontFamily="Arial" FontSize="25" Foreground="#FF666666" FontWeight="Bold" >Drag-and-drop</Run>
+            </TextBlock>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="193.29,0,193.29,130.375">
+                <Run FontFamily="Arial" FontSize="14" Foreground="#FF666666">picture or folder here</Run>
+            </TextBlock>
+
+        </Grid>
+
     </Grid>
 </Window>
