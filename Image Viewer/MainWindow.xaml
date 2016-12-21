@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Viewer"
         mc:Ignorable="d"
-      Title="MainWindow" Height="350" Width="525" AllowsTransparency="True" WindowStyle="None">
+      Title="MainWindow" Height="500" Width="750" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResizeWithGrip">
 
     <Window.Resources>
 
@@ -16,9 +16,6 @@
             <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
 
-        <Style TargetType="Border" x:Name="bord">
-            
-        </Style>
 
     </Window.Resources>
 
@@ -43,7 +40,7 @@
             </StackPanel>
 
             <WrapPanel HorizontalAlignment="Right" Margin="0,0,42,0" >
-                <Button Style="{StaticResource SmallBtn}"   >
+                <Button Style="{StaticResource SmallBtn}" Template="{StaticResource ButtonControl1}"  >
                     <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png" ToolTip="Pin titlebar" />
                 </Button>
             </WrapPanel>
@@ -80,53 +77,8 @@
             </Grid>
         </Border>
 
-        <UserControl x:Name="EditControl" Height="40" Width="300" VerticalAlignment="Bottom" Margin="112.5,0,112.5,15" Grid.Row="1" d:LayoutOverrides="VerticalAlignment">
-            <Border CornerRadius="18">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                        <GradientStop Color="#FF323232" Offset="0"/>
-                        <GradientStop Color="#FF272727" Offset="0.25"/>
-                        <GradientStop Color="#FF181818" Offset="0.5"/>
-                        <GradientStop Color="#FF0C0C0C" Offset="0.75"/>
-                        <GradientStop Color="#FF020202" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Grid>
-                    <Border x:Name="leftPanel" HorizontalAlignment="Right" Height="20" Width="120" BorderBrush="#FF3D3D3D" BorderThickness="1" CornerRadius="10">
-                        <WrapPanel>
-                            <Button Style="{StaticResource SmallBtn}"   >
-                                <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png"  />
-                            </Button>
-                            <Button Style="{StaticResource SmallBtn}"   >
-                                <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png"  />
-                            </Button>
-                            <Button Style="{StaticResource SmallBtn}"   >
-                                <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png"  />
-                            </Button>
-                        </WrapPanel>
-                    </Border>
-                    <Border x:Name="rightPanel" Height="20" Width="120" HorizontalAlignment="Left" BorderBrush="#FF3D3D3D" BorderThickness="1" CornerRadius="10">
-                        <WrapPanel>
-                            <Button Style="{StaticResource SmallBtn}"   >
-                                <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png"  />
-                            </Button>
-                            <Button Style="{StaticResource SmallBtn}"   >
-                                <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png"  />
-                            </Button>
-                            <Button Style="{StaticResource SmallBtn}"   >
-                                <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png"  />
-                            </Button>
-                        </WrapPanel>
-                    </Border>
-                </Grid>
-                
-            </Border>
-            
-            
-            
-            
-            
+        <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <local:EditPanel x:Name="EditPnl" Width="400" />
         </UserControl>
 
     </Grid>
