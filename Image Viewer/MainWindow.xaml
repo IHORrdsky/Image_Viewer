@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Viewer"
         mc:Ignorable="d"
-      Title="MainWindow" Height="350" Width="525" AllowsTransparency="True" WindowStyle="None">
+      Title="MainWindow" ResizeMode="CanResizeWithGrip" Height="350" Width="525" AllowsTransparency="True"  WindowStyle="None">
 
     <Window.Resources>
 
@@ -33,9 +33,9 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <StackPanel Orientation="Horizontal">
-                <Button   Style="{StaticResource SmallBtn}" Template="{StaticResource Close_Button}"   x:Name="Close"  Click="Close_Click" HorizontalAlignment="Center"/>
-                <Button  Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Template="{StaticResource Minimize_Button}" HorizontalAlignment="Center" />
-                <Button  Style="{StaticResource SmallBtn}" x:Name="Maximize" Template="{StaticResource Maximize_Button}" Click="Maximize_Click" HorizontalAlignment="Center"/>
+                <Button Margin="4.7, 5.2,0,0" Style="{StaticResource SmallBtn}" Template="{StaticResource Close_Button}"   x:Name="Close"  Click="Close_Click" HorizontalAlignment="Center"/>
+                <Button Margin="0,5.2,0,0" Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Template="{StaticResource Minimize_Button}" HorizontalAlignment="Center" />
+                <Button Margin="0,5.2,0,0" Style="{StaticResource SmallBtn}" x:Name="Maximize" Template="{StaticResource Maximize_Button}" Click="Maximize_Click" HorizontalAlignment="Center"/>
             </StackPanel>
 
 
