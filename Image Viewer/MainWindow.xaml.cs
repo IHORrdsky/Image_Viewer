@@ -21,6 +21,8 @@ namespace Image_Viewer
     /// </summary>
     public partial class MainWindow : Window
     {
+        string[] files;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -37,14 +39,16 @@ namespace Image_Viewer
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // Note that you can have more than one file.
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string FileName = files[0];
-                MessageBox.Show(files[0]);
-                // Assuming you have one file that you care about, pass it off to whatever
-                // handling code you have defined
+                //MessageBox.Show(files.Length.ToString());
+                //MessageBox.Show(FileName);
+             
                 net.Source = new BitmapImage(new Uri(FileName));
                 firstBlock.Text = String.Empty;
                 secondBlock.Text = String.Empty;
+                
+                
             }
         }
 
@@ -62,6 +66,5 @@ namespace Image_Viewer
         {
             this.WindowState = WindowState.Minimized;
         }
-
     }
 }

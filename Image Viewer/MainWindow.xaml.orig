@@ -1,0 +1,92 @@
+﻿<Window x:Class="Image_Viewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Image_Viewer"
+        mc:Ignorable="d"
+<<<<<<< HEAD
+      Title="MainWindow" ResizeMode="CanResizeWithGrip" Height="350" Width="525" AllowsTransparency="True"  WindowStyle="None">
+=======
+      Title="MainWindow" Height="500" Width="750" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResizeWithGrip">
+>>>>>>> 2ba2c1912c4bf513402ac5d82692dd53be75ebc8
+
+    <Window.Resources>
+
+        <Style TargetType="Button" x:Key="SmallBtn">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent"/>
+        </Style>
+
+
+    </Window.Resources>
+
+    <Grid Background="#FF000000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Height="20" VerticalAlignment="Top" x:Name="TopPanel">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#FF333333" Offset="0"/>
+                    <GradientStop Color="#FF1F1F1F" Offset="0.5"/>
+                    <GradientStop Color="#FF050505" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="4.7, 5.2,0,0" Style="{StaticResource SmallBtn}" Template="{StaticResource Close_Button}"   x:Name="Close"  Click="Close_Click" HorizontalAlignment="Center"/>
+                <Button Margin="0,5.2,0,0" Style="{StaticResource SmallBtn}"  x:Name="Minimize" Click="Minimize_Click" Template="{StaticResource Minimize_Button}" HorizontalAlignment="Center" />
+                <Button Margin="0,5.2,0,0" Style="{StaticResource SmallBtn}" x:Name="Maximize" Template="{StaticResource Maximize_Button}" Click="Maximize_Click" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <WrapPanel HorizontalAlignment="Right" Margin="0,0,42,0" >
+                <Button Style="{StaticResource SmallBtn}" Template="{StaticResource ButtonControl1}"  >
+                    <Image Source="pack://application:,,,/Image Viewer;component/image/ico_pin_off.png" ToolTip="Pin titlebar" />
+                </Button>
+            </WrapPanel>
+
+
+        </Grid>
+
+        <Border x:Name="ContentPanel" Grid.Row="1" AllowDrop="True" Drop="Image_Drop" BorderBrush="#FF333333" BorderThickness="1">
+
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#FF000000" Offset="0"/>
+                        <GradientStop Color="#FF050505" Offset="0.25"/>
+                        <GradientStop Color="#FF0E0E0E" Offset="0.5"/>
+                        <GradientStop Color="#FF181818" Offset="0.75"/>
+                        <GradientStop Color="#FF212121" Offset="1"/>
+                    </LinearGradientBrush>
+                </Grid.Background>
+
+                <Image x:Name="net" AllowDrop="True" Drop="Image_Drop" />
+
+                <StackPanel x:Name="dragPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="firstBlock" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Run FontFamily="Arial" FontSize="25" Foreground="#FF666666" FontWeight="Bold" >Drag-and-drop</Run>
+                    </TextBlock>
+
+                    <TextBlock x:Name="secondBlock"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Run FontFamily="Arial" FontSize="14" Foreground="#FF666666">picture or folder here</Run>
+                    </TextBlock>
+                </StackPanel>
+
+
+            </Grid>
+        </Border>
+
+        <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <local:EditPanel x:Name="EditPnl" Width="400" />
+        </UserControl>
+
+    </Grid>
+</Window>
+
+
+
