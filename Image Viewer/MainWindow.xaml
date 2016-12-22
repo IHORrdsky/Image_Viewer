@@ -77,8 +77,8 @@
             </Grid>
         </Border>
 
-        <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
-            <local:EditPanel x:Name="EditPnl" Width="400" />
+        <UserControl  Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10">
+            <local:EditPanel Visibility="Hidden" x:Name="EditPnl" Width="400" />
         </UserControl>
 
     </Grid>

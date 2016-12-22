@@ -36,6 +36,7 @@ namespace Image_Viewer
 
         private void Image_Drop(object sender, DragEventArgs e)
         {
+            EditPnl.Visibility = Visibility.Visible;
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // Note that you can have more than one file.
