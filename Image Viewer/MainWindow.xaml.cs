@@ -21,13 +21,15 @@ namespace Image_Viewer
     /// </summary>
     public partial class MainWindow : Window
     {
-        string[] files;
+        private WindowState state = WindowState.Normal;
+        private int number = 0;
+        private string[] files;
 
         public MainWindow()
         {
             InitializeComponent();
-            
         }
+
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
@@ -42,14 +44,15 @@ namespace Image_Viewer
                 // Note that you can have more than one file.
                 files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 string FileName = files[0];
+                
+                //object data = e.Data.GetData(typeof(Object));
                 //MessageBox.Show(files.Length.ToString());
                 //MessageBox.Show(FileName);
-             
-                net.Source = new BitmapImage(new Uri(FileName));
+
+                imageOn.Source = new BitmapImage(new Uri(FileName));
                 firstBlock.Text = String.Empty;
                 secondBlock.Text = String.Empty;
-                
-                
+                this.EditPnl.Add_Window_Owner(this);
             }
         }
 
@@ -60,7 +63,21 @@ namespace Image_Viewer
 
         private void Maximize_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState = WindowState.Maximized;
+            if (number == 0)
+            {
+                number++;
+                this.state = WindowState;
+                this.WindowState = WindowState.Maximized;
+                return;
+            }
+            if(this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = this.state;
+            }
+            else
+            {
+                this.WindowState = WindowState.Maximized;
+            }
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)

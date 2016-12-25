@@ -14,12 +14,15 @@
                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Margin" TargetName="grid" Value="0"/>
-                <Setter Property="VerticalAlignment" TargetName="grid" Value="Center"/>
-                <Setter Property="HorizontalAlignment" TargetName="grid" Value="Center"/>
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
             </Trigger>
-            <Trigger Property="IsPressed" Value="True"/>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.75" />
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+            </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="True">
                 <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
@@ -45,9 +48,15 @@
                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
             </Trigger>
-            <Trigger Property="IsPressed" Value="True"/>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.75" />
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+            </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="True">
                 <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
@@ -73,9 +82,15 @@
                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
             </Trigger>
-            <Trigger Property="IsPressed" Value="True"/>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Opacity" Value="0.75" />
+                <Setter Property="Background" TargetName="border" Value="Transparent"/>
+                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
+            </Trigger>
             <Trigger Property="ToggleButton.IsChecked" Value="True">
                 <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
@@ -96,6 +111,7 @@
                 <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Opacity" Value="0.5" />
                 <Setter Property="Background" TargetName="border" Value="Transparent"/>
                 <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
             </Trigger>

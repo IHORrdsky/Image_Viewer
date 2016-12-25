@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Image_Viewer"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="400"  VerticalAlignment="Bottom" Margin="112.5,0,112.5,15" d:LayoutOverrides="VerticalAlignment" >
+             d:DesignHeight="50" d:DesignWidth="400"  VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment" >
     <UserControl.Resources>
 
         <Style TargetType="Button" x:Key="SmallBtn">
@@ -48,16 +48,16 @@
                         <ColumnDefinition Width="25"></ColumnDefinition>
                         <ColumnDefinition Width="25"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center" >
+                    <Button x:Name="MirrorY" Click="MirrorY_Click" Grid.Column="0" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_flip_v@2x.png"  />
                     </Button>
-                    <Button Grid.Column="1" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
+                    <Button x:Name="MirrorX" Click="MirrorX_Click" Grid.Column="1" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_flip_h@2x.png"  />
                     </Button>
-                    <Button Grid.Column="2" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
+                    <Button x:Name="LeftRight" Click="LeftRight_Click" Grid.Column="2" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_rotate_left@2x.png"  />
                     </Button>
-                    <Button Grid.Column="3" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
+                    <Button Click="RotateRight_Click" x:Name="RotateRight" Grid.Column="3" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_rotate_right@2x.png"  />
                     </Button>
                 </Grid>
@@ -73,10 +73,10 @@
                     <Button Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_1@2x.png"  />
                     </Button>
-                    <Button Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"  >
+                    <Button x:Name="ZoomOut" Click="ZoomOut_Click" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_out@2x.png"  />
                     </Button>
-                    <Button Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
+                    <Button x:Name="ZoomIn" Click="ZoomIn_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_in@2x.png"  />
                     </Button>
                 </WrapPanel>
