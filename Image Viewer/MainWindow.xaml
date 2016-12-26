@@ -61,7 +61,9 @@
                     </LinearGradientBrush>
                 </Grid.Background>
 
-                <Image x:Name="imageOn" AllowDrop="True" Drop="Image_Drop" />
+                <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+                    <Image x:Name="imageOn" AllowDrop="True" Drop="Image_Drop" />
+                </ScrollViewer>
 
                 <StackPanel x:Name="dragPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <TextBlock x:Name="firstBlock" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -77,8 +79,8 @@
             </Grid>
         </Border>
 
-        <UserControl  Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,10" HorizontalAlignment="Stretch">
-            <local:EditPanel Visibility="Hidden" x:Name="EditPnl" Width="400" />
+        <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="175,0,175,44" HorizontalAlignment="Center">
+            <local:EditPanel MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0"  x:Name="EditPnl" Width="400" />
         </UserControl>
 
     </Grid>

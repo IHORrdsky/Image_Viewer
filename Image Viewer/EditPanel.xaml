@@ -70,12 +70,13 @@
                     <Button Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_2@2x.png"  />
                     </Button>
-                    <Button Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
+                    <Button x:Name="OriginalSize" Click="OriginalSize_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_1@2x.png"  />
                     </Button>
                     <Button x:Name="ZoomOut" Click="ZoomOut_Click" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_out@2x.png"  />
                     </Button>
+                    
                     <Button x:Name="ZoomIn" Click="ZoomIn_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_in@2x.png"  />
                     </Button>
@@ -91,8 +92,8 @@
             </StackPanel>
 
             <StackPanel x:Name="SavePanel" HorizontalAlignment="Right" Margin="0,10,15,10" d:LayoutOverrides="Height" >
-                <Button Height="30" VerticalAlignment="Center" x:Name="SaveBtn" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"   >
-                    <Image Source="pack://application:,,,/Image Viewer;component/image/p_autosave_on@2x.png"  />
+                <Button x:Name="AutoSaveBtn" Click="AutoSaveBtn_Click" Height="30" VerticalAlignment="Center" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"   >
+                    <Image x:Name="ImageSave" Source="pack://application:,,,/Image Viewer;component/image/p_autosave_on@2x.png"  />
                 </Button>
             </StackPanel>
 
@@ -100,3 +101,5 @@
 
     </Border>
 </UserControl>
+
+    
