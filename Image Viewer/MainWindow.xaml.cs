@@ -81,7 +81,7 @@ namespace Image_Viewer
         {
             InitializeComponent();
 
-            FileStream f = File.Open("test.jpg", FileMode.Open);
+            FileStream f = File.Open("фото.jpg", FileMode.Open);
             BitmapDecoder decoder = JpegBitmapDecoder.Create(f, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
             BitmapMetadata metadata = (BitmapMetadata)decoder.Frames[0].Metadata;
             // Получаем заголовок через поле класса

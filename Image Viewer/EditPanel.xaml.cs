@@ -43,7 +43,6 @@ namespace Image_Viewer
         {
             TransformedBitmap tb = new TransformedBitmap();
             BitmapImage bi = new BitmapImage(new Uri(this.imageName));
-
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
@@ -160,6 +159,25 @@ namespace Image_Viewer
         }
 
         private void OriginalSize_Click(object sender, RoutedEventArgs e)
+        {
+            //MessageBox.Show(wn.imageOn.Source.ToString());
+            BitmapImage img = new BitmapImage(new Uri(imageName));
+            wn.imageOn.Source = img;
+            wn.imageOn.Height = img.Height;
+            wn.imageOn.Width = img.Width;
+        }
+
+        private void Fill_Click(object sender, RoutedEventArgs e)
+        {
+            BitmapImage tmp= new BitmapImage(new Uri(imageName));
+            wn.imageOn.Source = tmp;
+            
+            wn.imageOn.Height = wn.ContentPanel.ActualHeight;
+            wn.imageOn.Width = wn.ContentPanel.ActualWidth;
+            //wn.imageOn.Source=tmp;
+        }
+
+        private void AspectToFill_Click(object sender, RoutedEventArgs e)
         {
 
         }
