@@ -171,12 +171,24 @@ namespace Image_Viewer
 
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)
         {
-            EditPnl.Opacity = 1;
+           // EditPnl.Opacity = 1;
         }
 
         private void UserControl_MouseLeave(object sender, MouseEventArgs e)
         {
-            EditPnl.Opacity = 0;
+           // EditPnl.Opacity = 0;
+        }
+
+        private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            /*if(imageOn.Source!=null)
+            {
+                BitmapImage img = new BitmapImage(new Uri(imageOn.Source.ToString()));
+                imageOn.Source = img;
+                imageOn.Height = ContentPanel.ActualHeight;
+                imageOn.Width = ContentPanel.ActualWidth;
+            }*/
+           
         }
     }
 }

@@ -167,17 +167,16 @@ namespace Image_Viewer
             wn.imageOn.Width = img.Width;
         }
 
-        private void Fill_Click(object sender, RoutedEventArgs e)
+        private void Fit_Click(object sender, RoutedEventArgs e)
         {
             BitmapImage tmp= new BitmapImage(new Uri(imageName));
             wn.imageOn.Source = tmp;
-            
-            wn.imageOn.Height = wn.ContentPanel.ActualHeight;
             wn.imageOn.Width = wn.ContentPanel.ActualWidth;
+            wn.imageOn.Height = wn.ContentPanel.ActualHeight;
             //wn.imageOn.Source=tmp;
         }
 
-        private void AspectToFill_Click(object sender, RoutedEventArgs e)
+        private void AspectToFit_Click(object sender, RoutedEventArgs e)
         {
 
         }

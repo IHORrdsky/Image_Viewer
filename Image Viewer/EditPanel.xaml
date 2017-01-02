@@ -64,10 +64,10 @@
             </Border>
             <Border x:Name="LeftPanel" Height="24" Width="112" HorizontalAlignment="Left" BorderBrush="#FF3D3D3D" BorderThickness="1" CornerRadius="12" Margin="50,13,0,13">
                 <WrapPanel HorizontalAlignment="Center">
-                    <Button x:Name="AspectToFill" Style="{StaticResource SmallBtn}" Click="AspectToFill_Click" Template="{DynamicResource ButtonControl1}"  >
+                    <Button x:Name="AspectToFit" Style="{StaticResource SmallBtn}" Click="AspectToFit_Click" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_maximize@2x.png"  />
                     </Button>
-                    <Button x:Name="Fill" Style="{StaticResource SmallBtn}" Click="Fill_Click" Template="{DynamicResource ButtonControl1}"  >
+                    <Button x:Name="Fit" Style="{StaticResource SmallBtn}" Click="Fit_Click" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_2@2x.png"  />
                     </Button>
                     <Button x:Name="OriginalSize" Click="OriginalSize_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >

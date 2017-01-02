@@ -48,7 +48,7 @@
 
         </Grid>
 
-        <Border x:Name="ContentPanel" Grid.Row="1" AllowDrop="True" Drop="Image_Drop" BorderBrush="#FF333333" BorderThickness="1">
+        <Border x:Name="ContentPanel" SizeChanged="ContentPanel_SizeChanged" Grid.Row="1" AllowDrop="True" Drop="Image_Drop" BorderBrush="#FF333333" BorderThickness="1">
 
             <Grid>
                 <Grid.Background>
@@ -62,7 +62,7 @@
                 </Grid.Background>
 
                 <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-                    <Image x:Name="imageOn" AllowDrop="True" Drop="Image_Drop" />
+                    <Image x:Name="imageOn" Height="Auto" Width="Auto" AllowDrop="True" Drop="Image_Drop" />
                 </ScrollViewer>
 
                 <StackPanel x:Name="dragPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -79,8 +79,8 @@
             </Grid>
         </Border>
 
-        <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="175,0,175,44" HorizontalAlignment="Center">
-            <local:EditPanel MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0"  x:Name="EditPnl" Width="400" />
+        <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,44" HorizontalAlignment="Center">
+            <local:EditPanel MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="1"  x:Name="EditPnl" Width="400" />
         </UserControl>
 
     </Grid>
