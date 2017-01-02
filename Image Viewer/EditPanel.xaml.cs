@@ -178,7 +178,9 @@ namespace Image_Viewer
 
         private void AspectToFit_Click(object sender, RoutedEventArgs e)
         {
-
+            BitmapImage tmp = new BitmapImage(new Uri(imageName));
+            wn.imageOn.Source = tmp;
+            wn.imageOn.Height = wn.ContentPanel.ActualHeight;
         }
     }
 }
