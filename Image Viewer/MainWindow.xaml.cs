@@ -181,13 +181,13 @@ namespace Image_Viewer
 
         private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            /*if(imageOn.Source!=null)
+            if(imageOn.Source!=null)
             {
                 BitmapImage img = new BitmapImage(new Uri(imageOn.Source.ToString()));
                 imageOn.Source = img;
                 imageOn.Height = ContentPanel.ActualHeight;
                 imageOn.Width = ContentPanel.ActualWidth;
-            }*/
+            }
            
         }
     }
