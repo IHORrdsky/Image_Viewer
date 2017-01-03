@@ -62,7 +62,7 @@
                 </Grid.Background>
 
                 <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-                    <Image x:Name="imageOn" Height="Auto" Width="Auto" AllowDrop="True" Drop="Image_Drop" />
+                    <Image x:Name="imageOn" Source="Screen Shot 2016-12-10 at 20.42.16 PM.png" Height="Auto" Width="Auto" AllowDrop="True" Drop="Image_Drop" />
                 </ScrollViewer>
 
                 <StackPanel x:Name="dragPanel" HorizontalAlignment="Center" VerticalAlignment="Center">

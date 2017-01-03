@@ -24,7 +24,7 @@ namespace Image_Viewer
         private WindowState state = WindowState.Normal;
         private int number = 0;
         private string[] files;
-        private string FileName = "";
+        private string mFileName = "";
         //private Object data;
 
         private double mHeightDef;
@@ -32,6 +32,17 @@ namespace Image_Viewer
         private double mPreviousHeight;
         private double mPreviousWidth;
 
+        public string FileName
+        {
+            get
+            {
+                return this.mFileName;
+            }
+            set
+            {
+                this.mFileName = value;
+            }
+        }
         public double HeightDef
         {
             get
@@ -81,17 +92,19 @@ namespace Image_Viewer
         {
             InitializeComponent();
 
-            FileStream f = File.Open("фото.jpg", FileMode.Open);
-            BitmapDecoder decoder = JpegBitmapDecoder.Create(f, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
-            BitmapMetadata metadata = (BitmapMetadata)decoder.Frames[0].Metadata;
-            // Получаем заголовок через поле класса
-            string title = metadata.Title;
-            // Получаем заголовок из XMP
-            string xmptitle = (string)metadata.GetQuery(@"/xmp/<xmpalt>dc:title");
-            // Получаем заголовок из EXIF
-            string exiftitle = (string)metadata.GetQuery(@"/app1/ifd/{ushort=40091}");
-            // Получаем заголовок из IPTC
-            string iptctitle = (string)metadata.GetQuery(@"/app13/irb/8bimiptc/iptc/object name");
+            this.EditPnl.Add_Window_Owner(this);
+
+            //FileStream f = File.Open("фото.jpg", FileMode.Open);
+            //BitmapDecoder decoder = JpegBitmapDecoder.Create(f, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
+            //BitmapMetadata metadata = (BitmapMetadata)decoder.Frames[0].Metadata;
+            //// Получаем заголовок через поле класса
+            //string title = metadata.Title;
+            //// Получаем заголовок из XMP
+            //string xmptitle = (string)metadata.GetQuery(@"/xmp/<xmpalt>dc:title");
+            //// Получаем заголовок из EXIF
+            //string exiftitle = (string)metadata.GetQuery(@"/app1/ifd/{ushort=40091}");
+            //// Получаем заголовок из IPTC
+            //string iptctitle = (string)metadata.GetQuery(@"/app13/irb/8bimiptc/iptc/object name");
 
         }
 
@@ -101,21 +114,27 @@ namespace Image_Viewer
             this.DragMove();
         }
 
-        public void SaveChanges()
-        {
-            //if (FileName != "")
-            //{
-            //    BitmapSource img = (BitmapSource)(bi);
-            //    CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-            //    TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(Angle));
-            //    TiffBitmapEncoder encoder = new TiffBitmapEncoder();
-            //    encoder.Frames.Add(BitmapFrame.Create(tb));
-            //    using (FileStream file = File.OpenWrite(path))
-            //    {
-            //        encoder.Save(file);
-            //    }
-            //}
-        }
+        //public void SaveChanges()
+        //{
+        //    if (FileName != "")
+        //    {
+        //        BitmapSource img = (BitmapSource)(bi);
+        //        CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        //        TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(Angle));
+        //        TiffBitmapEncoder encoder = new TiffBitmapEncoder();
+        //        encoder.Frames.Add(BitmapFrame.Create(tb));
+        //        using (FileStream file = File.OpenWrite(path))
+        //        {
+        //            encoder.Save(file);
+        //        }
+        //    }
+        //}
+
+        //public static Bitmap LoadBitmap(string fileName)
+        //{
+        //    using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+        //        return new Bitmap(fs);
+        //}
 
         private void Image_Drop(object sender, DragEventArgs e)
         {
@@ -124,9 +143,12 @@ namespace Image_Viewer
                 // Note that you can have more than one file.
                 files = (string[])e.Data.GetData(DataFormats.FileDrop);
                 FileName = files[0];
-                
+
                 //data = e.Data.GetData(typeof(Object));
                 //MessageBox.Show(files.Length.ToString());
+
+
+
                 //MessageBox.Show(FileName);
 
                 imageOn.Source = new BitmapImage(new Uri(FileName));
@@ -142,6 +164,30 @@ namespace Image_Viewer
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
+            if (this.EditPnl.SaveState/* && this.EditPnl.Angle != 0*/)
+            {
+                //MessageBox.Show(this.wn.FileName.Remove(this.wn.FileName.LastIndexOf('\\')+1));
+                //string directory = this.FileName.Remove(this.FileName.LastIndexOf('\\') + 1);
+
+                //BitmapSource img = new BitmapImage(new Uri(this.EditPnl.ImageName));
+
+                BitmapSource img = (BitmapSource)this.imageOn.Source;
+                CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(EditPnl.Angle));
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(tb));
+                imageOn.Source = null;
+                using (FileStream file = File.OpenWrite(this.imageOn.Source.ToString()))
+                {
+                    encoder.Save(file); 
+                }
+
+                //MessageBox.Show(this.imageOn.Source.ToString());
+                //FileStream file = File.OpenWrite(this.imageOn.Source.ToString());
+                //encoder.Save(file);
+                //file.Close();
+            }
+
             this.Close();
         }
 
@@ -189,6 +235,11 @@ namespace Image_Viewer
                 imageOn.Width = ContentPanel.ActualWidth;
             }*/
            
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
