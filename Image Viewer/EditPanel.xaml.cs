@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,16 +24,64 @@ namespace Image_Viewer
     {
         private MainWindow wn;
         private string imageName;
-        private int Angle = 0;
+        private int mAngle = 0;
         private RotateTransform transformRotate = new RotateTransform(0);
         private ScaleTransform transformScale = new ScaleTransform();
-        private bool SaveState = true;
+        private bool mSaveState = true;
         private double Number = 1.5;
         
+        public int Angle
+        {
+            get
+            {
+                return this.mAngle;
+            }
+        }
+        public bool SaveState
+        {
+            get { return this.mSaveState; }
+        }
+        public string ImageName
+        {
+            get
+            {
+                return this.imageName;
+            }
+        }
 
         public EditPanel()
         {
             InitializeComponent();
+        }
+
+        public void SaveChanges()
+        {
+            if (this.wn.FileName != "")
+            {
+                //BitmapSource img = (BitmapSource)(bi);
+                //CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                //TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(Angle));
+                //TiffBitmapEncoder encoder = new TiffBitmapEncoder();
+                //encoder.Frames.Add(BitmapFrame.Create(tb));
+                //using (FileStream file = File.OpenWrite(path))
+                //{
+                //    encoder.Save(file);
+                //}
+            }
+        }
+
+        private void AutoSaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (mSaveState)
+            {
+                mSaveState = false;
+                this.ImageSave.Source = new BitmapImage(new Uri("pack://application:,,,/Image Viewer;component/image/p_autosave_off@2x.png"));
+            }
+            else
+            {
+                mSaveState = true;
+                this.ImageSave.Source = new BitmapImage(new Uri("pack://application:,,,/Image Viewer;component/image/p_autosave_on@2x.png"));
+            }
         }
 
         public void Add_Window_Owner(MainWindow w)
@@ -43,7 +93,6 @@ namespace Image_Viewer
 
         private void W_SourceUpdated(object sender, EventArgs e)
         {
-            this.imageName = this.wn.imageOn.Source.ToString();
         }
 
         public void RotateRight_Click(object sender, RoutedEventArgs e)
@@ -53,6 +102,8 @@ namespace Image_Viewer
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
+            mAngle = mAngle + 90;
+            transformRotate = new RotateTransform(mAngle);
             Angle = Angle + 90;
             transformRotate = new RotateTransform(Angle);
                    
@@ -151,20 +202,6 @@ namespace Image_Viewer
             this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
         }
 
-        private void AutoSaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            if(SaveState)
-            {
-                SaveState = false;
-                this.ImageSave.Source = new BitmapImage(new Uri("pack://application:,,,/Image Viewer;component/image/p_autosave_off@2x.png"));
-            }
-            else
-            {
-                SaveState = true;
-                this.ImageSave.Source = new BitmapImage(new Uri("pack://application:,,,/Image Viewer;component/image/p_autosave_on@2x.png"));
-            }
-        }
-
         private void OriginalSize_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(wn.imageOn.Source.ToString());
@@ -185,7 +222,11 @@ namespace Image_Viewer
 
         private void AspectToFit_Click(object sender, RoutedEventArgs e)
         {
-            
+            OpenFileDialog dg = new OpenFileDialog();
+            dg.ShowDialog();
+            this.imageName = dg.FileName;
+            //MessageBox.Show(dg.FileName);
+            wn.imageOn.Source = new BitmapImage(new Uri(dg.FileName));
         }
     }
 }
