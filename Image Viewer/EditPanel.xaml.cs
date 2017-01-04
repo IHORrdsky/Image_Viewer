@@ -109,7 +109,7 @@ namespace Image_Viewer
         public void LeftRight_Click(object sender, RoutedEventArgs e)
         {
             TransformedBitmap tb = new TransformedBitmap();
-            BitmapImage bi = new BitmapImage(new Uri(this.imageName));
+            BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
 
             tb.BeginInit();
             tb.Source = bi;
@@ -126,7 +126,7 @@ namespace Image_Viewer
         private void MirrorX_Click(object sender, RoutedEventArgs e)
         {
             TransformedBitmap tb = new TransformedBitmap();
-            BitmapImage bi = new BitmapImage(new Uri(this.imageName));
+            BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
@@ -147,7 +147,7 @@ namespace Image_Viewer
         private void MirrorY_Click(object sender, RoutedEventArgs e)
         {
             TransformedBitmap tb = new TransformedBitmap();
-            BitmapImage bi = new BitmapImage(new Uri(this.imageName));
+            BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
@@ -198,7 +198,7 @@ namespace Image_Viewer
         private void OriginalSize_Click(object sender, RoutedEventArgs e)
         {
             //MessageBox.Show(wn.imageOn.Source.ToString());
-            BitmapImage img = new BitmapImage(new Uri(imageName));
+            BitmapImage img = new BitmapImage(new Uri(wn.FileName));
             wn.imageOn.Source = img;
             wn.imageOn.Height = img.Height;
             wn.imageOn.Width = img.Width;
@@ -206,7 +206,7 @@ namespace Image_Viewer
 
         private void Fit_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage tmp= new BitmapImage(new Uri(imageName));
+            BitmapImage tmp= new BitmapImage(new Uri(wn.FileName));
             wn.imageOn.Source = tmp;
             wn.imageOn.Width = wn.ContentPanel.ActualWidth;
             wn.imageOn.Height = wn.ContentPanel.ActualHeight;
@@ -215,11 +215,11 @@ namespace Image_Viewer
 
         private void AspectToFit_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog dg = new OpenFileDialog();
-            dg.ShowDialog();
-            this.imageName = dg.FileName;
-            //MessageBox.Show(dg.FileName);
-            wn.imageOn.Source = new BitmapImage(new Uri(dg.FileName));
+            //OpenFileDialog dg = new OpenFileDialog();
+            //dg.ShowDialog();
+            //this.imageName = dg.FileName;
+            ////MessageBox.Show(dg.FileName);
+            //wn.imageOn.Source = new BitmapImage(new Uri(dg.FileName));
         }
     }
 }

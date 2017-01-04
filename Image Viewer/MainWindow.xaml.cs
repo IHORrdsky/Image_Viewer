@@ -169,15 +169,13 @@ namespace Image_Viewer
                 //MessageBox.Show(this.wn.FileName.Remove(this.wn.FileName.LastIndexOf('\\')+1));
                 //string directory = this.FileName.Remove(this.FileName.LastIndexOf('\\') + 1);
 
-                //BitmapSource img = new BitmapImage(new Uri(this.EditPnl.ImageName));
-
-                BitmapSource img = (BitmapSource)this.imageOn.Source;
-                CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                CachedBitmap cache = new CachedBitmap((BitmapSource)this.imageOn.Source, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
                 TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(EditPnl.Angle));
                 JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(tb));
                 imageOn.Source = null;
-                using (FileStream file = File.OpenWrite(this.imageOn.Source.ToString()))
+                imageOn = null;
+                using (FileStream file = File.Create(FileName))
                 {
                     encoder.Save(file); 
                 }
