@@ -27,6 +27,7 @@ namespace Image_Viewer
         private ScaleTransform transformScale = new ScaleTransform();
         private bool SaveState = true;
         private double Number = 1.5;
+        
 
         public EditPanel()
         {
@@ -36,6 +37,12 @@ namespace Image_Viewer
         public void Add_Window_Owner(MainWindow w)
         {
             this.wn = w;
+            //this.imageName = this.wn.imageOn.Source.ToString();
+            w.MySourceUpdated += W_SourceUpdated;
+        }
+
+        private void W_SourceUpdated(object sender, EventArgs e)
+        {
             this.imageName = this.wn.imageOn.Source.ToString();
         }
 
@@ -178,9 +185,7 @@ namespace Image_Viewer
 
         private void AspectToFit_Click(object sender, RoutedEventArgs e)
         {
-            BitmapImage tmp = new BitmapImage(new Uri(imageName));
-            wn.imageOn.Source = tmp;
-            wn.imageOn.Height = wn.ContentPanel.ActualHeight;
+            
         }
     }
 }

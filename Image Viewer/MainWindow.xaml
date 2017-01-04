@@ -49,7 +49,7 @@
         </Grid>
 
         <Border x:Name="ContentPanel" SizeChanged="ContentPanel_SizeChanged" Grid.Row="1" AllowDrop="True" Drop="Image_Drop" BorderBrush="#FF333333" BorderThickness="1">
-
+            
             <Grid>
                 <Grid.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
@@ -62,7 +62,7 @@
                 </Grid.Background>
 
                 <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-                    <Image x:Name="imageOn" Height="Auto" Width="Auto" AllowDrop="True" Drop="Image_Drop" />
+                    <Image x:Name="imageOn"   AllowDrop="True" Drop="Image_Drop" />
                 </ScrollViewer>
 
                 <StackPanel x:Name="dragPanel" HorizontalAlignment="Center" VerticalAlignment="Center">

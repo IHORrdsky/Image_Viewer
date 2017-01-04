@@ -31,6 +31,7 @@ namespace Image_Viewer
         private double mWidthDef;
         private double mPreviousHeight;
         private double mPreviousWidth;
+        public event EventHandler MySourceUpdated;
 
         public double HeightDef
         {
@@ -119,6 +120,7 @@ namespace Image_Viewer
 
         private void Image_Drop(object sender, DragEventArgs e)
         {
+            imageOn.SourceUpdated += ImageOn_SourceUpdated;
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // Note that you can have more than one file.
@@ -138,6 +140,11 @@ namespace Image_Viewer
                 this.WidthDef = imageOn.ActualWidth;
                 this.PreviousWidth = imageOn.ActualWidth;
             }
+        }
+
+        private void ImageOn_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+            MySourceUpdated(this, EventArgs.Empty);
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -189,6 +196,11 @@ namespace Image_Viewer
                 imageOn.Width = ContentPanel.ActualWidth;
             }
            
+        }
+
+        private void imageOn_SourceUpdated(object sender, DataTransferEventArgs e)
+        {
+               
         }
     }
 }
