@@ -30,12 +30,9 @@ namespace Image_Viewer
         private bool mSaveState = true;
         private double Number = 1.5;
         
+
         public int Angle
         {
-            set
-            {
-                this.mAngle = value;
-            }
             get
             {
                 return this.mAngle;
@@ -62,15 +59,15 @@ namespace Image_Viewer
         {
             if (this.wn.FileName != "")
             {
-                /*BitmapSource img = (BitmapSource)(bi);
-                CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-                TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(Angle));
-                TiffBitmapEncoder encoder = new TiffBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(tb));
-                using (FileStream file = File.OpenWrite(path))
-                {
-                    encoder.Save(file);
-                }*/
+                //BitmapSource img = (BitmapSource)(bi);
+                //CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                //TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(Angle));
+                //TiffBitmapEncoder encoder = new TiffBitmapEncoder();
+                //encoder.Frames.Add(BitmapFrame.Create(tb));
+                //using (FileStream file = File.OpenWrite(path))
+                //{
+                //    encoder.Save(file);
+                //}
             }
         }
 
@@ -92,12 +89,15 @@ namespace Image_Viewer
         {
             this.wn = w;
             //this.imageName = this.wn.imageOn.Source.ToString();
+<<<<<<< HEAD
             w.MySourceUpdated += W_SourceUpdated;
         }
 
         private void W_SourceUpdated(object sender, EventArgs e)
         {
             this.imageName = this.wn.imageOn.Source.ToString();
+=======
+>>>>>>> db6f6a9b1f4fedf26e965884c2ddfef8ce289ce3
         }
 
         public void RotateRight_Click(object sender, RoutedEventArgs e)
@@ -109,8 +109,6 @@ namespace Image_Viewer
             // Set image rotation.
             mAngle = mAngle + 90;
             transformRotate = new RotateTransform(mAngle);
-            Angle = Angle + 90;
-            transformRotate = new RotateTransform(Angle);
                    
             tb.Transform = transformRotate;
             tb.EndInit();
@@ -126,8 +124,8 @@ namespace Image_Viewer
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
-            Angle = Angle - 90;
-            transformRotate = new RotateTransform(Angle);
+            mAngle = mAngle - 90;
+            transformRotate = new RotateTransform(mAngle);
 
             tb.Transform = transformRotate;
             tb.EndInit();
@@ -227,11 +225,15 @@ namespace Image_Viewer
 
         private void AspectToFit_Click(object sender, RoutedEventArgs e)
         {
+<<<<<<< HEAD
+            
+=======
             OpenFileDialog dg = new OpenFileDialog();
             dg.ShowDialog();
             this.imageName = dg.FileName;
             //MessageBox.Show(dg.FileName);
             wn.imageOn.Source = new BitmapImage(new Uri(dg.FileName));
+>>>>>>> db6f6a9b1f4fedf26e965884c2ddfef8ce289ce3
         }
     }
 }

@@ -92,9 +92,9 @@ namespace Image_Viewer
         public MainWindow()
         {
             InitializeComponent();
-            imageOn.KeyUp += ImageOn_SourceUpdated;
+
             this.EditPnl.Add_Window_Owner(this);
-            
+
             //FileStream f = File.Open("фото.jpg", FileMode.Open);
             //BitmapDecoder decoder = JpegBitmapDecoder.Create(f, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
             //BitmapMetadata metadata = (BitmapMetadata)decoder.Frames[0].Metadata;
@@ -139,7 +139,7 @@ namespace Image_Viewer
 
         private void Image_Drop(object sender, DragEventArgs e)
         {
-           
+            imageOn.SourceUpdated += ImageOn_SourceUpdated;
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // Note that you can have more than one file.
@@ -156,7 +156,7 @@ namespace Image_Viewer
                 imageOn.Source = new BitmapImage(new Uri(FileName));
                 firstBlock.Text = String.Empty;
                 secondBlock.Text = String.Empty;
-                //this.EditPnl.Add_Window_Owner(this);
+                this.EditPnl.Add_Window_Owner(this);
                 this.HeightDef = imageOn.ActualHeight;
                 this.PreviousHeight = imageOn.ActualHeight;
                 this.WidthDef = imageOn.ActualWidth;
@@ -164,7 +164,7 @@ namespace Image_Viewer
             }
         }
 
-        private void ImageOn_SourceUpdated(object sender, KeyEventArgs e)
+        private void ImageOn_SourceUpdated(object sender, DataTransferEventArgs e)
         {
             MySourceUpdated(this, EventArgs.Empty);
         }
@@ -244,14 +244,15 @@ namespace Image_Viewer
            
         }
 
+<<<<<<< HEAD
         private void imageOn_SourceUpdated(object sender, DataTransferEventArgs e)
         {
                
-        }
-
+=======
         private void button_Click(object sender, RoutedEventArgs e)
         {
 
+>>>>>>> db6f6a9b1f4fedf26e965884c2ddfef8ce289ce3
         }
     }
 }
