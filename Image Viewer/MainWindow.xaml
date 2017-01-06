@@ -80,7 +80,7 @@
         </Border>
 
         <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,44" HorizontalAlignment="Center">
-            <local:EditPanel MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="1"  x:Name="EditPnl" Width="400" />
+            <local:EditPanel IsEnabled="False" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0" x:Name="EditPnl" Width="400" />
         </UserControl>
 
     </Grid>
