@@ -48,7 +48,7 @@
 
         </Grid>
 
-        <Border x:Name="ContentPanel" SizeChanged="ContentPanel_SizeChanged" Grid.Row="1" AllowDrop="True" Drop="Image_Drop" BorderBrush="#FF333333" BorderThickness="1">
+        <Border x:Name="ContentPanel" Grid.Row="1" AllowDrop="True" Drop="Image_Drop" BorderBrush="#FF333333" BorderThickness="1">
 
             <Grid>
                 <Grid.Background>
@@ -81,6 +81,10 @@
 
         <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,44" HorizontalAlignment="Center">
             <local:EditPanel IsEnabled="False" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0" x:Name="EditPnl" Width="400" />
+        </UserControl>
+
+        <UserControl Grid.Row="1"  HorizontalAlignment="Right" >
+            <local:MetaDataPanel IsEnabled="False" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0" x:Name="DataPnl" Width="250" />
         </UserControl>
 
     </Grid>

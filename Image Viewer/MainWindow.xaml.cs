@@ -137,6 +137,7 @@ namespace Image_Viewer
                 this.WidthDef = imageOn.ActualWidth;
                 this.PreviousWidth = imageOn.ActualWidth;
                 EditPnl.IsEnabled = true;
+                //DataPnl.IsEnabled = true;
             }
         }
 
@@ -199,21 +200,23 @@ namespace Image_Viewer
                 EditPnl.Opacity = 0;
         }
 
-        private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void UserControl_MouseEnter1(object sender, MouseEventArgs e)
         {
-            /*if(imageOn.Source!=null)
+            if (imageOn.Source != null)
             {
-                BitmapImage img = new BitmapImage(new Uri(imageOn.Source.ToString()));
-                imageOn.Source = img;
-                imageOn.Height = ContentPanel.ActualHeight;
-                imageOn.Width = ContentPanel.ActualWidth;
-            }*/
-           
+                DataPnl.Opacity = 0.3;
+            }
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void UserControl_MouseLeave1(object sender, MouseEventArgs e)
         {
+            if (imageOn.Source != null)
+                DataPnl.Opacity = 0;
+        }
 
+        private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+           
         }
     }
 }

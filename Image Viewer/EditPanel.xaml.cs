@@ -30,7 +30,7 @@ namespace Image_Viewer
         TransformedBitmap tb = new TransformedBitmap();
         private bool mSaveState = false;
         private double Number = 1.5;
-        Stretch mStretch;
+        Stretch mStretch = Stretch.Uniform;
 
         public int Angle
         {
@@ -184,8 +184,7 @@ namespace Image_Viewer
 
         private void OriginalSize_Click(object sender, RoutedEventArgs e)
         {
-            if (mStretch != Stretch.None)
-                this.wn.imageOn.Stretch = mStretch;
+            this.wn.imageOn.Stretch = mStretch;
             BitmapImage img = new BitmapImage(new Uri(wn.FileName));
             wn.imageOn.Source = img;
             wn.imageOn.Height = img.Height;
@@ -193,30 +192,35 @@ namespace Image_Viewer
 
             this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            //if (this.wn.Scroll.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled || this.wn.Scroll.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
+            //{
+            //    this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            //    this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            //}
         }
 
         private void Fit_Click(object sender, RoutedEventArgs e)
         {
-            if (mStretch != Stretch.None)
-                this.wn.imageOn.Stretch = mStretch;
+            this.wn.imageOn.Stretch = mStretch;
             BitmapImage tmp= new BitmapImage(new Uri(wn.FileName));
             wn.imageOn.Source = tmp;
             wn.imageOn.Width = wn.ContentPanel.ActualWidth;
             wn.imageOn.Height = wn.ContentPanel.ActualHeight;
-            // внести поправку в зависимости от размеров изображения
-            this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
-            this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
+            if (this.wn.Scroll.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled || this.wn.Scroll.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
+            {
+                this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            }
         }
 
         private void AspectToFill_Click(object sender, RoutedEventArgs e)
         {
-            if(mStretch == Stretch.None)
-                mStretch = this.wn.imageOn.Stretch;
             this.wn.imageOn.Stretch = Stretch.UniformToFill;
-            // внести поправку в зависимости от размеров изображения
-            this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Hidden;
-            this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Hidden;
-
+            if (this.wn.Scroll.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled || this.wn.Scroll.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
+            {
+                this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            }
             //OpenFileDialog dg = new OpenFileDialog();
             //dg.ShowDialog();
             //this.imageName = dg.FileName;
