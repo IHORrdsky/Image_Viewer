@@ -33,7 +33,7 @@
                 <Button VerticalAlignment="Center"  Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" Margin="0,0,0,0"  >
                     <Image Height="15" Source="pack://application:,,,/Image Viewer;component/image/ico_pin_on@2x.png" Margin="0,0,0,0"  />
                 </Button>
-                <Button  VerticalAlignment="Center" Style="{StaticResource SmallBtn}" Height="25" Template="{DynamicResource ButtonControl1}" Margin="0,0,0,0"  >
+                <Button VerticalAlignment="Center" Style="{StaticResource SmallBtn}" Height="25" Template="{DynamicResource ButtonControl1}" Margin="0,0,0,0"  >
                     <Image  VerticalAlignment="Center" Source="pack://application:,,,/Image Viewer;component/image/p_slideshow@2x.png"  />
                 </Button>
             </StackPanel>
@@ -48,37 +48,37 @@
                         <ColumnDefinition Width="25"></ColumnDefinition>
                         <ColumnDefinition Width="25"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button x:Name="MirrorY" Click="MirrorY_Click" Grid.Column="0" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center" >
+                    <Button ToolTip="Flip vertically" x:Name="MirrorY" Click="MirrorY_Click" Grid.Column="0" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_flip_v@2x.png"  />
                     </Button>
-                    <Button x:Name="MirrorX" Click="MirrorX_Click" Grid.Column="1" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
+                    <Button ToolTip="Flip horizontally" x:Name="MirrorX" Click="MirrorX_Click" Grid.Column="1" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_flip_h@2x.png"  />
                     </Button>
-                    <Button x:Name="LeftRight" Click="LeftRight_Click" Grid.Column="2" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
+                    <Button ToolTip="Rotate left" x:Name="LeftRight" Click="LeftRight_Click" Grid.Column="2" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_rotate_left@2x.png"  />
                     </Button>
-                    <Button Click="RotateRight_Click" x:Name="RotateRight" Grid.Column="3" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
+                    <Button ToolTip="Rotate right" Click="RotateRight_Click" x:Name="RotateRight" Grid.Column="3" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}" HorizontalAlignment="Center"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_rotate_right@2x.png"  />
                     </Button>
                 </Grid>
             </Border>
             <Border x:Name="LeftPanel" Height="24" Width="112" HorizontalAlignment="Left" BorderBrush="#FF3D3D3D" BorderThickness="1" CornerRadius="12" Margin="50,13,0,13">
                 <WrapPanel HorizontalAlignment="Center">
-                    <Button x:Name="AspectToFit" Style="{StaticResource SmallBtn}" Click="AspectToFit_Click" Template="{DynamicResource ButtonControl1}"  >
+                    <Button ToolTip="Aspect to fill" x:Name="AspectToFill" Style="{StaticResource SmallBtn}" Click="AspectToFill_Click" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_maximize@2x.png"  />
                     </Button>
-                    <Button x:Name="Fit" Style="{StaticResource SmallBtn}" Click="Fit_Click" Template="{DynamicResource ButtonControl1}"  >
+                    <Button ToolTip="Fit" x:Name="Fit" Style="{StaticResource SmallBtn}" Click="Fit_Click" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_2@2x.png"  />
                     </Button>
-                    <Button x:Name="OriginalSize" Click="OriginalSize_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
+                    <Button ToolTip="Original Size" x:Name="OriginalSize" Click="OriginalSize_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_1@2x.png"  />
                     </Button>
-                    <Button x:Name="ZoomOut" Click="ZoomOut_Click" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"  >
+                    <Button ToolTip="Zoom out" x:Name="ZoomOut" Click="ZoomOut_Click" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"  >
                         <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_out@2x.png"  />
                     </Button>
-                    
-                    <Button x:Name="ZoomIn" Click="ZoomIn_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
-                        <Image Source="pack://application:,,,/Image Viewer;component/image/p_zoom_in@2x.png"  />
+
+                    <Button ToolTip="Zoom in" x:Name="ZoomIn" Click="ZoomIn_Click" Style="{StaticResource SmallBtn}"  Template="{DynamicResource ButtonControl1}" >
+                        <Image  Source="pack://application:,,,/Image Viewer;component/image/p_zoom_in@2x.png"  />
                     </Button>
                 </WrapPanel>
             </Border>
@@ -92,8 +92,8 @@
             </StackPanel>
 
             <StackPanel x:Name="SavePanel" HorizontalAlignment="Right" Margin="0,10,15,10" d:LayoutOverrides="Height" >
-                <Button x:Name="AutoSaveBtn" Click="AutoSaveBtn_Click" Height="30" VerticalAlignment="Center" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"   >
-                    <Image x:Name="ImageSave" Source="pack://application:,,,/Image Viewer;component/image/p_autosave_on@2x.png"  />
+                <Button ToolTip="Autosave off" x:Name="AutoSaveBtn" Click="AutoSaveBtn_Click" Height="30" VerticalAlignment="Center" Style="{StaticResource SmallBtn}" Template="{DynamicResource ButtonControl1}"   >
+                    <Image x:Name="ImageSave" Source="pack://application:,,,/Image Viewer;component/image/p_autosave_off@2x.png"  />
                 </Button>
             </StackPanel>
 

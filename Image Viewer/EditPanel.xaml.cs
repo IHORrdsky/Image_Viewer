@@ -27,8 +27,10 @@ namespace Image_Viewer
         private int mAngle = 0;
         private RotateTransform transformRotate = new RotateTransform(0);
         private ScaleTransform transformScale = new ScaleTransform();
-        private bool mSaveState = true;
+        TransformedBitmap tb = new TransformedBitmap();
+        private bool mSaveState = false;
         private double Number = 1.5;
+        Stretch mStretch = Stretch.Uniform;
         
         public int Angle
         {
@@ -58,10 +60,6 @@ namespace Image_Viewer
             InitializeComponent();
         }
 
-        public void SaveChanges()
-        {
-            if (this.wn.FileName != "")
-            {
                 /*BitmapSource img = (BitmapSource)(bi);
                 CachedBitmap cache = new CachedBitmap(img, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
                 TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(Angle));
@@ -71,19 +69,18 @@ namespace Image_Viewer
                 {
                     encoder.Save(file);
                 }*/
-            }
-        }
-
         private void AutoSaveBtn_Click(object sender, RoutedEventArgs e)
         {
             if (mSaveState)
             {
                 mSaveState = false;
+                AutoSaveBtn.ToolTip = "Autosave off";
                 this.ImageSave.Source = new BitmapImage(new Uri("pack://application:,,,/Image Viewer;component/image/p_autosave_off@2x.png"));
             }
             else
             {
                 mSaveState = true;
+                AutoSaveBtn.ToolTip = "Autosave on";
                 this.ImageSave.Source = new BitmapImage(new Uri("pack://application:,,,/Image Viewer;component/image/p_autosave_on@2x.png"));
             }
         }
@@ -91,7 +88,6 @@ namespace Image_Viewer
         public void Add_Window_Owner(MainWindow w)
         {
             this.wn = w;
-            //this.imageName = this.wn.imageOn.Source.ToString();
             w.MySourceUpdated += W_SourceUpdated;
         }
 
@@ -103,7 +99,7 @@ namespace Image_Viewer
         public void RotateRight_Click(object sender, RoutedEventArgs e)
         {
             TransformedBitmap tb = new TransformedBitmap();
-            BitmapImage bi = new BitmapImage(new Uri(this.imageName));
+            BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
@@ -135,27 +131,6 @@ namespace Image_Viewer
             this.wn.imageOn.Source = tb;
         }
 
-        private void MirrorX_Click(object sender, RoutedEventArgs e)
-        {
-            TransformedBitmap tb = new TransformedBitmap();
-            BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
-            tb.BeginInit();
-            tb.Source = bi;
-            // Set image rotation.
-            if (transformScale.ScaleY == -1)
-            {
-                transformScale = new ScaleTransform() { ScaleY = 1 };
-            }
-            else
-            {
-                transformScale = new ScaleTransform() { ScaleY = -1 };
-            }
-            tb.Transform = transformScale;
-            tb.EndInit();
-            // Set the Image source.
-            this.wn.imageOn.Source = tb;
-        }
-
         private void MirrorY_Click(object sender, RoutedEventArgs e)
         {
             TransformedBitmap tb = new TransformedBitmap();
@@ -165,11 +140,32 @@ namespace Image_Viewer
             // Set image rotation.
             if (transformScale.ScaleX == -1)
             {
-                transformScale = new ScaleTransform() { ScaleX = 1 };
+                transformScale = new ScaleTransform(1, transformScale.ScaleY);
             }
             else
             {
-                transformScale = new ScaleTransform() { ScaleX = -1 };
+                transformScale = new ScaleTransform(-1, transformScale.ScaleY);
+            }
+            tb.Transform = transformScale;
+            tb.EndInit();
+            // Set the Image source.
+            this.wn.imageOn.Source = tb;
+        }
+
+        private void MirrorX_Click(object sender, RoutedEventArgs e)
+        {
+            TransformedBitmap tb = new TransformedBitmap();
+            BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
+            tb.BeginInit();
+            tb.Source = bi;
+            // Set image rotation.
+            if (transformScale.ScaleY == -1)
+            {
+                transformScale = new ScaleTransform(transformScale.ScaleX, 1);
+            }
+            else
+            {
+                transformScale = new ScaleTransform(transformScale.ScaleX, -1);
             }
             tb.Transform = transformScale;
             tb.EndInit();
@@ -209,28 +205,46 @@ namespace Image_Viewer
 
         private void OriginalSize_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(wn.imageOn.Source.ToString());
+            this.wn.imageOn.Stretch = mStretch;
             BitmapImage img = new BitmapImage(new Uri(wn.FileName));
             wn.imageOn.Source = img;
             wn.imageOn.Height = img.Height;
             wn.imageOn.Width = img.Width;
+
+            this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            //if (this.wn.Scroll.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled || this.wn.Scroll.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
+            //{
+            //    this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            //    this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            //}
         }
 
         private void Fit_Click(object sender, RoutedEventArgs e)
         {
+            this.wn.imageOn.Stretch = mStretch;
             BitmapImage tmp= new BitmapImage(new Uri(wn.FileName));
             wn.imageOn.Source = tmp;
             wn.imageOn.Width = wn.ContentPanel.ActualWidth;
             wn.imageOn.Height = wn.ContentPanel.ActualHeight;
-            //wn.imageOn.Source=tmp;
+            if (this.wn.Scroll.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled || this.wn.Scroll.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
+            {
+                this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            }
         }
 
-        private void AspectToFit_Click(object sender, RoutedEventArgs e)
+        private void AspectToFill_Click(object sender, RoutedEventArgs e)
         {
+            this.wn.imageOn.Stretch = Stretch.UniformToFill;
+            if (this.wn.Scroll.HorizontalScrollBarVisibility != ScrollBarVisibility.Disabled || this.wn.Scroll.VerticalScrollBarVisibility != ScrollBarVisibility.Disabled)
+            {
+                this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
+                this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            }
             //OpenFileDialog dg = new OpenFileDialog();
             //dg.ShowDialog();
             //this.imageName = dg.FileName;
-            ////MessageBox.Show(dg.FileName);
             //wn.imageOn.Source = new BitmapImage(new Uri(dg.FileName));
         }
     }
