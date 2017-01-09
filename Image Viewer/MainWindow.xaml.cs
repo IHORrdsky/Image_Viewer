@@ -96,9 +96,8 @@ namespace Image_Viewer
         public MainWindow()
         {
             InitializeComponent();
-            imageOn.KeyUp += ImageOn_SourceUpdated;
             this.EditPnl.Add_Window_Owner(this);
-            
+            this.ContentPanel.SizeChanged += ContentPanel_SizeChanged;
         }
 
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
@@ -108,8 +107,7 @@ namespace Image_Viewer
         }
 
         private void Image_Drop(object sender, DragEventArgs e)
-        {
-           
+        {           
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 // Note that you can have more than one file.
@@ -117,7 +115,7 @@ namespace Image_Viewer
                 FileName = files[0];
                 //MessageBox.Show(FileName);
 
-                using (FileStream f = File.Open(FileName, FileMode.Open))
+                /*using (FileStream f = File.Open(FileName, FileMode.Open))
                 {
                     BitmapDecoder decoder = JpegBitmapDecoder.Create(f, BitmapCreateOptions.IgnoreColorProfile, BitmapCacheOption.Default);
                     BitmapMetadata metadata = (BitmapMetadata)decoder.Frames[0].Metadata;
@@ -129,36 +127,72 @@ namespace Image_Viewer
                     exiftitle = (string)metadata.GetQuery(@"/app1/ifd/{ushort=40091}");
                     // Получаем заголовок из IPTC
                     iptctitle = (string)metadata.GetQuery(@"/app13/irb/8bimiptc/iptc/object name");
-                }
-
-                imageOn.Source = new BitmapImage(new Uri(FileName));
+                }*/
+                //imageOn.Source = new BitmapImage(new Uri(FileName));
+                imageOn.SetCurrentValue(Image.SourceProperty, new BitmapImage(new Uri(FileName))); 
                 firstBlock.Text = String.Empty;
                 secondBlock.Text = String.Empty;
-                //this.EditPnl.Add_Window_Owner(this);
+                this.EditPnl.Add_Window_Owner(this);
                 this.HeightDef = imageOn.ActualHeight;
                 this.PreviousHeight = imageOn.ActualHeight;
                 this.WidthDef = imageOn.ActualWidth;
                 this.PreviousWidth = imageOn.ActualWidth;
-                EditPnl.IsEnabled = true;
+                MessageBox.Show(e.Source.ToString());
+                MySourceUpdated(this, EventArgs.Empty);
+                //EditPnl.IsEnabled = true;
                 //DataPnl.IsEnabled = true;
             }
         }
 
-        private void ImageOn_SourceUpdated(object sender, KeyEventArgs e)
-        {
-            MySourceUpdated(this, EventArgs.Empty);
-        }
-
         private void Close_Click(object sender, RoutedEventArgs e)
         {
-            if (this.EditPnl.SaveState && this.imageOn.Source != null /*&& this.EditPnl.Angle != 0*/)
+            // MessageBox.Show(sender.ToString() + "    "+e.ToString());
+            if (this.EditPnl.SaveState && this.imageOn.Source != null /* && this.EditPnl.Angle != 0*/)
             {
-                this.FileName = this.FileName.Remove(this.FileName.LastIndexOf('\\') + 1)
-                    + "New_" + this.FileName.Remove(0, this.FileName.LastIndexOf('\\') + 1);
-                //MessageBox.Show(this.FileName);
+                BitmapEncoder encoder;
+                string tmp = FileName;
+                string imageFormat = tmp.Substring(tmp.LastIndexOf('.')+1);
+                MessageBox.Show(imageFormat);
+                for (int i=1; ;i++)
+                {
+                    if (!File.Exists(FileName))
+                        break;
+                    try
+                    {
+                        FileName = FileName.Remove(this.FileName.LastIndexOf('('));
+                    }
+                    catch (ArgumentOutOfRangeException)
+                    {
+                        FileName = FileName.Remove(this.FileName.LastIndexOf('.'));
+                    }
+                    FileName += '('+ i.ToString()+ ")."+imageFormat;                    
+                }
+                switch (imageFormat)
+                {
+                    case "jpeg":
+                        encoder = new JpegBitmapEncoder();
+                        break;
+                    case "png":
+                        encoder = new PngBitmapEncoder();
+                        break;
+                    case "bmp":
+                        encoder = new BmpBitmapEncoder();
+                        break;
+                    case "tiff":
+                        encoder = new TiffBitmapEncoder();
+                        break;
+                    case "wmp":
+                        encoder = new WmpBitmapEncoder();
+                        break;
+                    case "gif":
+                        encoder = new GifBitmapEncoder();
+                        break;
+                    default:
+                        encoder= new PngBitmapEncoder();
+                        break;
+                }
                 CachedBitmap cache = new CachedBitmap((BitmapSource)this.imageOn.Source, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
                 TransformedBitmap tb = new TransformedBitmap(cache, new RotateTransform(EditPnl.Angle));
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
                 encoder.Frames.Add(BitmapFrame.Create(tb));
                 using (FileStream file = File.Create(this.FileName))
                 {
@@ -196,45 +230,26 @@ namespace Image_Viewer
 
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (imageOn.Source != null)
+            /*if (imageOn.Source != null)
             {               
                 EditPnl.Opacity = 1;
-            }
+            }*/
         }
 
         private void UserControl_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (imageOn.Source != null)
-                EditPnl.Opacity = 0;
+            /*if (imageOn.Source != null)
+                EditPnl.Opacity = 0;*/
         }
 
         private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(imageOn.Source!=null)
-            {
-                DataPnl.Opacity = 0.3;
-            }
-        }
-                BitmapImage img = new BitmapImage(new Uri(imageOn.Source.ToString()));
-                imageOn.Source = img;
-                imageOn.Height = ContentPanel.ActualHeight;
-                imageOn.Width = ContentPanel.ActualWidth;
-            }
-           
-        }
-
-        private void imageOn_SourceUpdated(object sender, DataTransferEventArgs e)
-        {
+            //BitmapImage img = new BitmapImage(new Uri(imageOn.Source.ToString()));
+            //imageOn.Source = img;
+            //MySourceUpdated(this, EventArgs.Empty);
+            imageOn.Height = ContentPanel.ActualHeight;
+            imageOn.Width = ContentPanel.ActualWidth;
+        } 
                
-        private void UserControl_MouseLeave1(object sender, MouseEventArgs e)
-        {
-            if (imageOn.Source != null)
-                DataPnl.Opacity = 0;
-        }
-
-        private void ContentPanel_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-           
-        }
     }
 }

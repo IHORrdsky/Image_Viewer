@@ -88,6 +88,7 @@ namespace Image_Viewer
         public void Add_Window_Owner(MainWindow w)
         {
             this.wn = w;
+            //this.imageName = this.wn.imageOn.Source.ToString();
             w.MySourceUpdated += W_SourceUpdated;
         }
 
@@ -103,11 +104,9 @@ namespace Image_Viewer
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
-            mAngle = mAngle + 90;
-            transformRotate = new RotateTransform(mAngle);
+            //transformRotate = new RotateTransform(mAngle);
             Angle = Angle + 90;
-            transformRotate = new RotateTransform(Angle);
-                   
+            transformRotate = new RotateTransform(Angle);                 
             tb.Transform = transformRotate;
             tb.EndInit();
             // Set the Image source.
@@ -118,13 +117,11 @@ namespace Image_Viewer
         {
             TransformedBitmap tb = new TransformedBitmap();
             BitmapImage bi = new BitmapImage(new Uri(this.wn.FileName));
-
             tb.BeginInit();
             tb.Source = bi;
             // Set image rotation.
             Angle = Angle - 90;
             transformRotate = new RotateTransform(Angle);
-
             tb.Transform = transformRotate;
             tb.EndInit();
             // Set the Image source.
@@ -242,6 +239,7 @@ namespace Image_Viewer
                 this.wn.Scroll.HorizontalScrollBarVisibility = ScrollBarVisibility.Disabled;
                 this.wn.Scroll.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
             }
+            
             //OpenFileDialog dg = new OpenFileDialog();
             //dg.ShowDialog();
             //this.imageName = dg.FileName;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Image_Viewer"
         mc:Ignorable="d"
-      Title="MainWindow" Height="500" Width="750" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResizeWithGrip">
+      Title="MainWindow" Height="500" Width="750" MinWidth="400" MinHeight="400" AllowsTransparency="True" WindowStyle="None" ResizeMode="CanResizeWithGrip">
 
     <Window.Resources>
 
@@ -62,7 +62,7 @@
                 </Grid.Background>
 
                 <ScrollViewer x:Name="Scroll" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
-                    <Image x:Name="imageOn" Source="Screen Shot 2016-12-10 at 20.42.16 PM.png" Height="Auto" Width="Auto" AllowDrop="True" Drop="Image_Drop" />
+                    <Image x:Name="imageOn"  Height="Auto" Width="Auto" AllowDrop="True" Drop="Image_Drop" />
                 </ScrollViewer>
 
                 <StackPanel x:Name="dragPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -80,11 +80,11 @@
         </Border>
 
         <UserControl Grid.Row="1" VerticalAlignment="Bottom" Margin="0,0,0,44" HorizontalAlignment="Center">
-            <local:EditPanel IsEnabled="False" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0" x:Name="EditPnl" Width="400" />
+            <local:EditPanel  MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" x:Name="EditPnl" Width="400" />
         </UserControl>
 
-        <UserControl Grid.Row="1"  HorizontalAlignment="Right" >
-            <local:MetaDataPanel IsEnabled="False" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="0" x:Name="DataPnl" Width="250" />
+        <UserControl Grid.Row="1" IsEnabled="False"  HorizontalAlignment="Right" >
+            <local:MetaDataPanel IsEnabled="False" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" Opacity="1" x:Name="DataPnl" Width="250" Background="{x:Null}" />
         </UserControl>
 
     </Grid>
